@@ -1,0 +1,614 @@
+:root {
+  /* Fondo principal (Azul oscuro Steam) */
+  --bg: #1b2838;
+  
+  /* Color de las cartas/contenedores (Un tono más oscuro/negro azulado) */
+  --card: #171a21;
+  
+  /* Texto secundario (Gris azulado claro, típico de Steam) */
+  --muted: #8f98a0; 
+  
+  /* Acento principal (Azul Steam brillante - botones y enlaces) */
+  --accent: #66c0f4;
+  
+  /* Acento secundario (Degradados oscuros) */
+  --accent-2: #2a475e;
+  
+  /* Fondo suave para elementos activos */
+  --soft: rgba(102, 192, 244, 0.1);
+  
+  /* Colores de estado */
+  --success: #a4d007; /* Verde lima (precios/descuentos de Steam) */
+  --danger: #ef4444;
+  
+  --radius: 4px; /* Steam usa bordes menos redondeados, más cuadrados */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+*{box-sizing: border-box}
+html,body{height:100%}
+body {
+  margin: 0;
+  /* Degradado vertical del azul Steam (#1b2838) a uno un poco más oscuro */
+  background: linear-gradient(180deg, #171a21 0%, #1b2838 40%, #1b2838 100%);
+  color: #c7d5e0; /* Color de texto principal (blanco grisáceo) */
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* CONTENEDOR PRINCIPAL */
+.app {
+  max-width:1100px;
+  margin:24px auto;
+  padding:16px;
+}
+
+/* HEADER */
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
+}
+
+.brand {
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+.logo {
+  width:44px;
+  height:44px;
+  border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#121212;
+  font-weight:700;
+  box-shadow:var(--shadow);
+}
+
+.site-title{
+  font-size:18px;
+  font-weight:700;
+}
+
+nav { 
+  display:flex; 
+  gap:12px; 
+  align-items:center; 
+}
+
+nav a{
+  color:var(--muted);
+  text-decoration:none;
+  padding:8px 12px;
+  border-radius:10px;
+  font-weight:600;
+}
+
+nav a.active{
+  background:var(--soft);
+  color:#fff;
+}
+
+/* BOTONES */
+.btn-primary {
+  /* Degradado azul clásico de los botones de Steam */
+  background: linear-gradient(90deg, #47bfff 0%, #1a9fff 100%);
+  color: #fff;
+  border-radius: 2px; /* Bordes más rectos */
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.3);
+  font-weight: 500;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #66c0f4 0%, #47bfff 100%); /* Más brillante al pasar el mouse */
+  color: #fff;
+}
+
+.btn-ghost{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.2);
+  color:var(--muted);
+}
+
+/* VISTAS */
+.view{ 
+  display:none; 
+  background:transparent; 
+}
+
+.view.active{ 
+  display:block; 
+  animation:fadeIn .18s ease; 
+}
+
+@keyframes fadeIn { 
+  from{opacity:0; transform: translateY(6px)} 
+  to{opacity:1; transform:none} 
+}
+
+/* HERO */
+.hero{
+  background: linear-gradient(180deg, rgba(0,255,102,0.12), rgba(0,192,255,0.12));
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.hero h1{ 
+  margin:0; 
+  font-size:22px; 
+  font-weight:700;
+  color:#fff;
+}
+
+.hero p{ 
+  margin:0;
+  color:var(--muted);
+}
+
+/* CONTROLES */
+.controls{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin:14px 0 10px 0;
+  align-items:center;
+}
+
+.search {
+  flex:1;
+  min-width:160px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  background:var(--card);
+  padding:8px;
+  border-radius:10px;
+  box-shadow:var(--shadow);
+}
+
+.search input{
+  border:0;
+  outline:0;
+  font-size:14px;
+  width:100%;
+  padding:6px;
+  background: var(--card);
+  color: #fff;
+}
+
+.filters{ 
+  display:flex; 
+  gap:8px; 
+  flex-wrap:wrap; 
+}
+
+.select, .input { 
+  padding:8px 10px; 
+  border-radius:10px; 
+  border:1px solid rgba(255,255,255,0.2); 
+  background:var(--card); 
+  color:#fff;
+}
+
+/* GRID DE GALERÍA */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap:14px;
+}
+
+@media(min-width:640px){ 
+  .grid{ grid-template-columns: repeat(2, 1fr); } 
+}
+
+@media(min-width:980px){ 
+  .grid{ grid-template-columns: repeat(3, 1fr); } 
+}
+
+.card{
+  background:var(--card);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.card:hover{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0,255,200,0.3);
+}
+
+.card-img{ 
+  width:100%; 
+  aspect-ratio:16/10; 
+  object-fit:cover; 
+  display:block; 
+}
+
+.card-body{ 
+  padding:12px; 
+  display:flex;
+  flex-direction:column; 
+  gap:8px; 
+  color:#fff;
+}
+
+.meta{ 
+  display:flex; 
+  justify-content:space-between; 
+  align-items:center; 
+  gap:8px; 
+  color:var(--muted); 
+  font-size:13px; 
+}
+
+.stars{ 
+  color:#fbbf24; 
+  font-weight:700; 
+}
+
+.price{ 
+  font-weight:700; 
+  color:var(--accent); 
+}
+
+/* DETALLE */
+.detail{
+  display:grid; 
+  gap:12px;
+}
+
+@media(min-width:900px){
+  .detail{ 
+    grid-template-columns: 1fr 420px; 
+    align-items:start; 
+  }
+  .detail .detail-image{ 
+    height:520px; 
+    object-fit:cover; 
+    border-radius:12px; 
+  }
+}
+
+.detail .detail-image{ 
+  width:100%; 
+  aspect-ratio: 16/10; 
+  border-radius:12px; 
+  object-fit:cover; 
+}
+
+/* AUTOR */
+.author{ display:flex; align-items:center; gap:10px; }
+.avatar{ 
+  width:44px; 
+  height:44px; 
+  border-radius:999px; 
+  background:linear-gradient(135deg,var(--accent),var(--accent-2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:700; 
+  color:#121212; 
+}
+
+/* FORMULARIOS */
+form{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px; 
+  background:var(--card); 
+  padding:14px; 
+  border-radius:12px; 
+  box-shadow:var(--shadow); 
+  color:#fff;
+}
+
+label{ 
+  font-weight:600; 
+  font-size:13px; 
+  color:#fff; 
+}
+
+input[type="text"], 
+input[type="number"], 
+textarea, 
+select, 
+input[type="file"]{
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.2); 
+  outline:none;
+  font-size:14px; 
+  background:var(--bg);
+  color:#fff;
+}
+
+textarea{ 
+  min-height:110px; 
+  resize:vertical; 
+}
+
+/* LISTA DEL CARRITO */
+.cart-list{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:8px; 
+}
+
+.cart-item{ 
+  display:flex; 
+  gap:12px; 
+  align-items:center; 
+  padding:10px; 
+  border-radius:10px; 
+  background:var(--soft);
+}
+
+.cart-item img{ 
+  width:72px; 
+  height:56px; 
+  object-fit:cover; 
+  border-radius:8px; 
+}
+
+.summary{ 
+  padding:12px; 
+  border-radius:12px; 
+  background:var(--card); 
+  box-shadow:var(--shadow); 
+  color:#fff;
+}
+
+/* AUTENTICACIÓN */
+.auth { 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px; 
+  max-width:420px; 
+}
+
+.google-btn{ 
+  display:flex; 
+  gap:8px; 
+  align-items:center;
+  justify-content:center; 
+  padding:10px; 
+  border-radius:10px; 
+  border:1px solid rgba(255,255,255,0.2); 
+  background:var(--card); 
+  color:#fff;
+}
+
+/* PENDIENTES */
+.pending-list{ 
+  display:flex; 
+  flex-direction:column; 
+  gap:10px; 
+}
+
+.pending-card{ 
+  padding:10px; 
+  border-radius:10px; 
+  background:var(--card); 
+  display:flex; 
+  align-items:center; 
+  gap:12px; 
+  justify-content:space-between; 
+  box-shadow:var(--shadow); 
+  color:#fff;
+}
+
+/* FOOTER */
+footer{ 
+  margin-top:28px; 
+  text-align:center; 
+  color:var(--muted); 
+  font-size:13px; 
+}
+
+.muted{ color:var(--muted); }
+.gap-row{ display:flex; gap:8px; align-items:center; }
+
+/* BOTÓN DE LOGOUT */
+.btn-logout {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #121212;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+  z-index: 1000;
+}
+
+.btn-logout:hover {
+  transform: scale(1.05);
+  /* Rojo más brillante al pasar el mouse */
+  background: linear-gradient(135deg, #ff6666 0%, #d32f2f 100%);
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.6); /* Resplandor rojo */
+}
+
+.cart-btn {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  border: none;
+  color: #121212;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  transition: .2s;
+}
+
+.cart-btn:hover {
+  transform: scale(1.05);
+}
+
+#cart-count {
+  background: #fff;
+  color: var(--accent-2);
+  padding: 2px 7px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* Estilo general para botones */
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Botón Subir Imagen */
+#btn-upload-image {
+  background: linear-gradient(135deg, #00ff66, #00c0ff);
+  color: #121212;
+  box-shadow: 0 4px 12px rgba(0,255,102,0.4);
+}
+
+#btn-upload-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(0,255,102,0.6);
+}
+
+/* Botón Publicar */
+#btn-publish {
+  background: linear-gradient(135deg, #00c0ff, #00ff66);
+  color: #121212;
+  box-shadow: 0 4px 12px rgba(0,192,255,0.4);
+}
+
+
+/* =========================================
+   RESPONSIVE / VERSIÓN MÓVIL (LagartoStore)
+   ========================================= */
+
+@media (max-width: 768px) {
+  /* 1. Ajustar el Header para que se apile verticalmente */
+  header {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch; /* Ocupar todo el ancho */
+  }
+
+  /* 2. Centrar la marca (Logo + Nombre) */
+  .brand {
+    justify-content: center;
+  }
+
+  /* 3. Navegación tipo "scroll" o botones más grandes */
+  nav {
+    justify-content: center;
+    flex-wrap: wrap; /* Si no caben, bajan */
+    gap: 8px;
+  }
+
+  nav a.nav-link {
+    font-size: 14px;
+    padding: 8px 10px;
+    background: var(--card); /* Fondo para que parezcan botones */
+  }
+  
+  nav button#btn-explore {
+    width: 100%; /* Botón explorar ancho completo en móvil */
+    justify-content: center;
+  }
+
+  /* 4. Ajustar controles de búsqueda y filtros */
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search {
+    width: 100%;
+  }
+
+  .filters {
+    justify-content: space-between;
+  }
+  
+  .filters select {
+    flex: 1; /* Los selectores ocupan mitad y mitad */
+  }
+
+  /* 5. Ajustar detalle del producto */
+  .detail {
+    display: flex; /* Quitar grid */
+    flex-direction: column;
+  }
+
+  .detail .detail-image {
+    height: auto;
+    aspect-ratio: 4/3; /* Imagen un poco más cuadrada */
+  }
+
+ /* Botón de Cerrar Sesión - Estilo ROJO */
+.btn-logout {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  
+  /* CAMBIO: Degradado Rojo Intenso */
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  color: #ffffff; /* Texto blanco para que se lea bien sobre el rojo */
+  
+  border: none;
+  border-radius: 4px; /* Bordes más rectos estilo Steam */
+  padding: 10px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase; /* Letras mayúsculas estilo tienda */
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all 0.2s ease;
+  z-index: 1000;
+}
+  
+  .cart-btn {
+    /* Ajustar si estorba el logo */
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+
+/* Ajustes para móviles muy pequeños (iPhone SE, etc) */
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 20px;
+  }
+  
+  .grid {
+    grid-template-columns: 1fr; /* Una sola columna obligatoria */
+  }
+}

@@ -1,0 +1,228 @@
+
+body {
+  margin: 0;
+  /* Degradado vertical del azul Steam (#1b2838) a uno un poco más oscuro */
+  background: linear-gradient(180deg, #171a21 0%, #1b2838 40%, #1b2838 100%);
+  color: #c7d5e0; /* Color de texto principal (blanco grisáceo) */
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  color: #00ff66;
+  text-shadow: 0 0 8px #00c0ff;
+  margin-bottom: 20px;
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Carrito */
+.carrito-container {
+  background-color: #1e1e2f;
+  border-radius: 10px;
+  padding: 15px;
+  width: 60%;
+  max-width: 600px;
+  box-shadow: 0 0 15px #00c0ff66;
+}
+
+.carrito-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #00c0ff44;
+}
+
+.carrito-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.item-info h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #00ff66;
+}
+
+.item-info p {
+  margin: 2px 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+/* Botón Volver a la Galería - Estilo Steam Secundario */
+.regresar-btn {
+  display: block;
+  margin: 30px auto 0 auto; /* Centrado y con espacio arriba */
+  padding: 12px 25px;
+  width: fit-content; /* Se ajusta al tamaño del texto */
+  
+  /* ESTÉTICA */
+  background-color: transparent; /* Fondo transparente */
+  border: 1px solid #2a475e;     /* Borde azul grisáceo sutil */
+  color: #66c0f4;                /* Texto azul brillante de Steam */
+  
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 2px; /* Bordes cuadrados típicos de Steam */
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  
+  /* Icono de flecha (opcional, si usas emoji en el HTML) */
+  text-decoration: none;
+}
+
+/* Efecto Hover (Al pasar el mouse) */
+.regresar-btn:hover {
+  background-color: #2a475e; /* Se rellena de azul oscuro */
+  color: #ffffff;            /* Texto cambia a blanco */
+  border-color: #66c0f4;     /* El borde brilla */
+  transform: translateX(-4px); /* Pequeña animación hacia la izquierda */
+  box-shadow: 0 0 15px rgba(102, 192, 244, 0.2); /* Resplandor suave */
+}
+/* Formulario de pago */
+/* =========================================
+   ESTILO STEAM CHECKOUT - LagartoStore
+   ========================================= */
+
+/* El contenedor del formulario (La "Ventana") */
+.payment-form {
+  background-color: #1b2838; /* Azul Steam Clásico */
+  border-radius: 4px;        /* Bordes poco redondeados (estilo PC) */
+  border: 1px solid #2a475e; /* Borde sutil azul grisáceo */
+  padding: 24px;
+  
+  /* Posicionamiento y sombras */
+  width: 100%;
+  max-width: 400px; /* Un poco más ancho */
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8); /* Sombra profunda */
+  
+  display: none; /* Se oculta por defecto */
+  position: relative; /* Para el botón de cerrar */
+  
+  /* Centrado en pantalla si lo usas como modal */
+  margin: 0 auto; 
+  color: #c7d5e0; /* Texto gris claro Steam */
+}
+
+/* Título "Pago" */
+.payment-form h2 {
+  color: #ffffff;
+  text-align: left; /* Steam alinea a la izquierda */
+  font-family: "Motiva Sans", sans-serif; /* O tu fuente actual */
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #2a475e;
+  padding-bottom: 10px;
+  margin-top: 0;
+}
+
+/* Botón de cerrar (La X) */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  color: #8f98a0;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #ffffff;
+}
+
+/* El Total a Pagar */
+.total-precio {
+  font-size: 24px;
+  font-weight: bold;
+  color: #66c0f4; /* Azul brillante Steam */
+  margin: 15px 0;
+  text-align: right;
+}
+
+/* INPUTS y SELECTS (Estilo "Hundido") */
+.payment-form label {
+  color: #8f98a0; /* Etiqueta gris */
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: block;
+}
+
+#pay-method, 
+.payment-form input[type="text"], 
+.payment-form input[type="password"] {
+  background-color: #0d121a; /* Fondo casi negro */
+  border: 1px solid #4a5664; /* Borde gris medio */
+  color: #ffffff;
+  border-radius: 2px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 15px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* Efecto al escribir (Focus) */
+#pay-method:focus, 
+.payment-form input:focus {
+  border-color: #66c0f4; /* Brillo azul al seleccionar */
+  background-color: #1a212b;
+}
+
+/* EL FAMOSO BOTÓN VERDE DE STEAM */
+.btn-pay {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 2px;
+  border: none;
+  cursor: pointer;
+  color: #d2efa9; /* Texto verde muy claro */
+  
+  /* Degradado Verde Steam */
+  background: linear-gradient(to bottom, #a4d007 0%, #536904 100%);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.4);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+  margin-top: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-pay:hover {
+  /* Verde más brillante al pasar el mouse */
+  background: linear-gradient(to bottom, #b6e608 0%, #6b8705 100%);
+  color: #ffffff;
+  transform: translateY(-1px); /* Pequeño efecto de elevación */
+}
+
+/* Esto hace que el formulario flote en el centro de la pantalla */
+.payment-form {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-shadow: 0 0 100px rgba(0,0,0,0.9); /* Sombra gigante para oscurecer el fondo */
+}
